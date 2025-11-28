@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SIAS – Apoyo Social SABES</title>
+
+    <!-- BOOTSTRAP 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        :root {
+    /* Colores institucionales (reemplazar si es necesario) */
+    --GTOazulMarino: #000F9F;
+    --GTOazulMedio: #0066FF;
+    --GTOdocumentos: #C8C8AA;
+    --GTOeduCalidad: #B9C8E6;
+    --GTOheadFoot: #E4ECFA;
+
+    /* Tipografía y escala */
+    --ff-sans: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --base-size: 16px;
+    /* ajustar según diseño */
+    --container-max: 1100px;
+
+    /* Neutros */
+    --color-texto: #1a1a1a;
+    --color-blanco: #ffffff;
+    --muted: #6b7785;
+
+    --radius: 12px;
+    --focus-ring: 3px;
+}
+
+.logo-navbar {
+    height: 45px;
+}
+
+.navbar {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+}
+
+/* En móviles aún más pequeño */
+@media (max-width: 768px) {
+    .navbar-logo {
+        max-height: 32px;
+    }
+}
+
+.hero-sias {
+    position: relative;
+    min-height: 45px;
+    /* SUPER ALTO */
+    padding: 10px 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Máscara oscura */
+.hero-sias .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
+/* Contenido visible arriba */
+.hero-sias .container {
+    z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-sias {
+        min-height: 45px;
+        padding: 10px 0;
+    }
+}
+
+
+
+/* Hover elegante para los enlaces */
+.navbar .nav-link {
+    color: var(--GTOazulMarino);
+    transition: 0.2s ease-in-out;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--GTOazulMedio);
+}
+
+/* Estados active */
+.navbar .nav-link.active {
+    color: var(--GTOazulMedio);
+    font-weight: 700;
+}
+
+
+/* Mobile-first reset */
+* {
+    box-sizing: border-box
+}
+
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+body {
+    margin: 0;
+    font-family: var(--ff-sans);
+    font-size: var(--base-size);
+    color: var(--color-texto);
+    background-color: #f7f9fb;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Container centrado */
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Encabezados */
+h1,
+h2,
+h3 {
+    margin: 0 0 .5rem;
+    color: var(--GTOazulMarino)
+}
+
+/* Header */
+header {
+    background: var(--color-blanco);
+    border-bottom: 1px solid rgba(0, 15, 159, 0.06)
+}
+
+header .vr {
+    width: 1px;
+    background: rgba(6, 102, 255, 0.12);
+    height: 48px
+}
+
+/* Cards */
+.card {
+    background: var(--color-blanco);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px rgba(8, 35, 67, 0.04);
+    overflow: hidden;
+    border: 1px solid rgba(6, 58, 102, 0.04);
+}
+
+.card .card-body {
+    padding: 1rem
+}
+
+/* Carousel images */
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block
+}
+
+/* Botones */
+.btn-sias {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--GTOazulMedio);
+    color: var(--color-blanco);
+    padding: .6rem 1rem;
+    border-radius: 8px;
+    border: 0;
+    font-weight: 600;
+}
+
+.btn-sias:hover,
+.btn-sias:focus {
+    background: var(--GTOazulMarino);
+    outline: none
+}
+
+/* Accessible focus styles */
+:focus {
+    outline: none
+}
+
+:focus-visible {
+    box-shadow: 0 0 0 var(--focus-ring) rgba(0, 102, 255, 0.18);
+    border-radius: 8px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(0, 102, 255, 0.14);
+    outline-offset: 2px;
+}
+
+/* Form styles */
+label {
+    display: block;
+    font-size: .95rem;
+    margin-bottom: .35rem
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: .6rem .75rem;
+    border: 1px solid #dfeaf8;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1rem
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical
+}
+
+.help-text {
+    font-size: .875rem;
+    color: var(--muted)
+}
+
+/* Grid responsive */
+.grid {
+    display: grid;
+    gap: 1rem
+}
+
+@media(min-width:700px) {
+    .grid.two {
+        grid-template-columns: 1fr 360px
+    }
+}
+
+@media(min-width:992px) {
+    .container {
+        padding: 2rem
+    }
+}
+
+/* Footer */
+.site-footer {
+    padding: 1rem 0;
+    color: var(--muted);
+    font-size: .95rem;
+    border-top: 1px solid rgba(6, 102, 255, 0.06)
+}
+
+/* Utilities */
+.text-right {
+    text-align: right
+}
+
+.flex-row {
+    display: flex;
+    gap: .5rem;
+    align-items: center
+}
+
+.small {
+    font-size: .85rem
+}
+
+/* Small device adjustments */
+@media (max-width:767px) {
+    header .vr {
+        display: none
+    }
+
+    header img {
+        height: 48px
+    }
+
+    .btn-sias {
+        width: 100%;
+        justify-content: center
+    }
+}
+
+/* Print */
+@media print {
+    .no-print {
+        display: none !important
+    }
+
+    ;
+
+    body {
+        background: #fff
+    }
+}
+
+/* Tiny helpers for accessibility */
+.skip-link {
+    position: absolute;
+    left: -9999px
+}
+
+.skip-link:focus {
+    position: static;
+    left: auto;
+    top: 8px;
+    padding: .5rem;
+    background: var(--GTOazulMarino);
+    color: #fff;
+    border-radius: 6px
+}
+
+/* NAVBAR intermedio (altura equilibrada) */
+.navbar-medium {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+/* Fondo que solicitaste */
+.custom-nav {
+    background-color: #f8f9fa !important;
+}
+
+/* Ajuste fino de la marca */
+.navbar-brand {
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Tamaño óptimo del logo */
+.logo-navbar {
+    height: 52px;
+    width: auto;
+}
+
+/* Enlaces centrados y proporcionados */
+.nav-link {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    font-size: 1.05rem;
+}
+
+/* Todas las cards del carrusel con la misma altura */
+.campaign-card {
+    height: 100%;
+}
+
+/* Imagen con altura fija y recorte perfecto */
+.campaign-img {
+    height: 240px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Para emparejar alturas de las card-body */
+.campaign-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 240px);
+    /* resto del espacio */
+}
+
+.img-uniforme {
+    width: 100%;
+    height: 260px;
+    /* Puedes subirlo o bajarlo */
+    object-fit: cover;
+    /* Recorta armoniosamente sin deformar */
+    border-radius: 12px;
+    /* Opcional, solo para estética */
+}
+
+/* Que todas las imágenes tengan el mismo tamaño */
+.fixed-img {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Badge de estado */
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f8d7da;
+    color: #a94442;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f8d7da;
+    color: #a94442;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.status-ba {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ecf078;
+    color: #ece829;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.status-b {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #7fefaf;
+    color: #33db98;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #dc3545;
+    border-radius: 50%;
+}
+
+.status-op {
+    width: 10px;
+    height: 10px;
+    background: #12a044;
+    border-radius: 50%;
+}
+
+/* Badge de estado */
+.status-bg {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    background: #228f58;
+    color: #7fefaf;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    z-index: 10;
+}
+
+/* Ajustes para banner reducido */
+.hero-sias h2 {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.hero-sias .lead {
+    font-size: 11px;
+    margin-bottom: 0;
+}
+
+.hero-sias .btn {
+    font-size: 14px;
+    padding: 0.05rem 0.1rem;
+    margin-top: 0;
+}
+    </style>
+</head>
+<body style="background-color: white;">
+
+    <!-- ACCESIBILIDAD -->
+    <a class="visually-hidden-focusable position-absolute top-0 start-0 bg-white p-2" href="#contenido">Saltar al contenido principal</a>
+
+    <!-- ===== HEADER ===== -->
+<nav class="navbar navbar-expand-sm shadow-sm navbar-medium custom-nav" role="navigation" aria-label="Menú principal">
+    <div class="container-fluid">
+
+        <a class="navbar-brand d-flex align-items-center" href="https://sabes.edu.mx/portal/">
+            <img src="IMG/logoGto.png" alt="Logo SABES" class="logo-navbar">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto gap-4 fw-semibold">
+
+                <li class="nav-item">
+    <a class="nav-link" href="#">
+        <i class="fa-solid fa-house me-1"></i> Inicio
+    </a>
+</li>
+
+                <li class="nav-item">
+    <a class="nav-link" href="solicitud.html">
+        <i class="fa-solid fa-circle-plus me-1"></i> Solicitar
+    </a>
+</li>
+
+
+
+<li class="nav-item">
+    <a class="nav-link" href="login.html">
+        <i class="fa-solid fa-sign-in-alt me-1"></i> Login
+    </a>
+</li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+
+
+
+
+    <!-- ===== HERO ===== -->
+    <section 
+    class="hero-sias d-flex align-items-center" 
+    style="background-image: url('IMG/hero.jpg');"
+>
+    <!-- Máscara oscura -->
+    <div class="overlay"></div>
+
+    <div class="container text-center text-white position-relative">
+        <h2 class="fw-bold text-white">Apoyando a nuestra comunidad SABES</h2>
+        <p class="lead">
+            Conoce las campañas activas, resultados y formas de contribuir para ayudar
+            a estudiantes, familias y comunidades.
+        </p>
+        <a href="solicitud.html" class="btn btn-primary btn-lg mt-3">
+            Levantar solicitud
+        </a>
+    </div>
+</section>
+
+
+
+    <main id="contenido" class="container my-2">
+
+        <!-- ===== CAMPAÑAS ACTIVAS ===== -->
+        <h2 class="fw-bold mb-4">Campañas activas</h2>
+
+        <!-- Carrusel Bootstrap -->
+        <!-- Carrusel Bootstrap -->
+<div id="carouselCampañas" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <!-- ITEM 1 -->
+        <div class="carousel-item active">
+            <div class="container-fluid px-4">
+                <div class="row g-4">
+
+                    <!-- CARD 1 -->
+                    <div class="col-md-6">
+                        <div class="card campaign-card rounded-4 shadow-sm border-0 overflow-hidden h-100">
+                            <div class="status-bg">
+                <span class="status-op"></span> Activa
+            </div>
+                            <img src="IMG/comida.jpg" class="img-uniforme" alt="donacion Comida">
+
+                            <div class="card-body campaign-body">
+                                <h4 class="fw-bold text-primary">
+                                    <i class="fa-solid fa-utensils me-2"></i> Donación de comida
+                                </h4>
+                                <p>Apoyo a familias afectadas por desastres naturales.</p>
+                                <a href="detalleSolicitud1.html" class="btn btn-outline-primary mt-auto">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="col-md-6">
+                        <div class="card campaign-card rounded-4 shadow-sm border-0 overflow-hidden h-100">
+                            
+                                      <div class="status-bg">
+                <span class="status-op"></span> Activa
+            </div>
+                            <img src="IMG/asilos.jpg" class="img-uniforme" alt="">
+
+                            <div class="card-body campaign-body">
+                                <h4 class="fw-bold text-primary">
+                                    <i class="fa-solid fa-house-chimney-user me-2"></i> Apoyo a asilos
+                                </h4>
+                                <p>Recolecta de productos de higiene y cobijas.</p>
+                                <a href="detalleSolicitud2.html" class="btn btn-outline-primary mt-auto">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="carousel-item">
+            <div class="container-fluid px-4">
+                <div class="row g-4">
+
+                    <!-- CARD 3 -->
+                    <div class="col-md-6">
+                        <div class="card campaign-card rounded-4 shadow-sm border-0 overflow-hidden h-100">
+                            
+                                      <div class="status-bg">
+                <span class="status-op"></span> Activa
+            </div>
+                            <img src="IMG/abrigos.jpeg" class="card-img-top campaign-img">
+
+                            <div class="card-body campaign-body">
+                                <h4 class="fw-bold text-primary">
+                                    <i class="fa-solid fa-vest me-2"></i> Donación de abrigos
+                                </h4>
+                                <p>Entrega de ropa para comunidades de clima frío.</p>
+                                <a href="detalleSolicitud3.html" class="btn btn-outline-primary mt-auto">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="col-md-6">
+                        <div class="card campaign-card rounded-4 shadow-sm border-0 overflow-hidden h-100">
+                            
+                                      <div class="status-bg">
+                <span class="status-op"></span> Activa
+            </div>
+                            <img src="IMG/donacionSangre.jpg" class="card-img-top campaign-img">
+
+                            <div class="card-body campaign-body">
+                                <h4 class="fw-bold text-primary">
+                                    <i class="fa-solid fa-droplet me-2"></i> Donación de sangre
+                                </h4>
+                                <p>Colecta en coordinación con hospitales públicos.</p>
+                                <a href="detalleSolicitud4.html" class="btn btn-outline-primary mt-auto">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Flechas -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCampañas" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselCampañas" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+
+
+
+        <!-- ===== CAMPAÑAS FINALIZADAS ===== -->
+        <h2 class="fw-bold mt-5 mb-4">Campañas finalizadas</h2>
+
+        <div class="row g-4">
+
+    <!-- CARD 1 -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4 overflow-hidden">
+            <div class="status-badge">
+                <span class="status-dot"></span> Cerrada
+            </div>
+
+            <img src="IMG/ColectaUtiles.png" class="card-img-top fixed-img">
+
+             <div class="card-body">
+                 <a href="campfinal1.html" class="text-decoration-none">
+                     <h4 class="fw-bold text-primary">
+                         <i class="fa-solid fa-pencil me-2"></i> Colecta de útiles escolares
+                     </h4>
+                 </a>
+                 <p><strong>Resultado:</strong> 320 kits entregados a estudiantes.</p>
+             </div>
+        </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4 overflow-hidden">
+            <div class="status-badge">
+                <span class="status-dot"></span> Cerrada
+            </div>
+
+            <img src="IMG/rehabilitacionParques.jpeg" class="card-img-top fixed-img">
+
+             <div class="card-body">
+                 <a href="campfinal2.html" class="text-decoration-none">
+                     <h4 class="fw-bold text-primary">
+                         <i class="fa-solid fa-tree-city me-2"></i> Rehabilitación comunitaria
+                     </h4>
+                 </a>
+                 <p><strong>Resultado:</strong> 2 parques restaurados con voluntarios.</p>
+             </div>
+        </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4 overflow-hidden">
+            <div class="status-badge">
+                <span class="status-dot"></span> Cerrada
+            </div>
+
+            <img src="IMG/colectaViveres.webp" class="card-img-top fixed-img">
+
+             <div class="card-body">
+                 <a href="campfinal3.html" class="text-decoration-none">
+                     <h4 class="fw-bold text-primary">
+                         <i class="fa-solid fa-box-heart me-2"></i> Campaña de víveres emergencia
+                     </h4>
+                 </a>
+                 <p><strong>Resultado:</strong> 540 despensas distribuidas.</p>
+             </div>
+        </div>
+    </div>
+
+</div>
+
+    </main>
+
+   <!-- ===== FOOTER MODERNO ===== -->
+<footer class="text-white mt-5" style="background-color: #1E588C;">
+    <div class="container py-4">
+
+        <div class="row align-items-center">
+
+            <!-- Logo o Nombre -->
+            <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                <h5 class="fw-bold m-0">SABES</h5>
+                <p class="m-0" style="font-size: 14px;">Sistema Institucional de Apoyo Social</p>
+            </div>
+
+            <!-- Redes Sociales -->
+            <div class="col-md-4 text-center mb-3 mb-md-0">
+                
+            </div>
+
+            <!-- Links -->
+            <div class="col-md-4 text-center text-md-end">
+               <a href="#" class="text-white mx-2 fs-4"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white mx-2 fs-4"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="text-white mx-2 fs-4"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white mx-2 fs-4"><i class="bi bi-youtube"></i></a>
+            </div>
+
+        </div>
+
+        <hr class="border-light my-3">
+
+        <div class="text-center" style="font-size: 14px;">
+            &copy; 2025 SABES — Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
+
+<!-- IMPORTANTE: Asegúrate de tener Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
